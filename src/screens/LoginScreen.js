@@ -76,23 +76,23 @@ export default function LoginScreen({ navigation }) {
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
-        <Animated.View
-          style={[
-            styles.content,
-            {
-              opacity: fadeAnim,
-              transform: [{ translateY: slideAnim }],
-            },
-          ]}
-        >
+        <View style={styles.content}>
           {/* Logo/Icono */}
-          <View style={styles.logoContainer}>
+          <Animated.View 
+            style={[
+              styles.logoContainer,
+              {
+                opacity: fadeAnim,
+                transform: [{ translateY: slideAnim }],
+              },
+            ]}
+          >
             <View style={styles.logoCircle}>
               <Ionicons name="rocket" size={60} color="#fff" />
             </View>
             <Text style={styles.appName}>FireBase App</Text>
             <Text style={styles.welcomeText}>Bienvenido de vuelta</Text>
-          </View>
+          </Animated.View>
 
           {/* Formulario */}
           <View style={styles.formContainer}>
@@ -106,6 +106,8 @@ export default function LoginScreen({ navigation }) {
                 style={styles.input}
                 keyboardType="email-address"
                 autoCapitalize="none"
+                editable={true}
+                selectTextOnFocus={true}
               />
             </View>
 
@@ -118,6 +120,8 @@ export default function LoginScreen({ navigation }) {
                 onChangeText={setPassword}
                 secureTextEntry={!showPassword}
                 style={styles.input}
+                editable={true}
+                selectTextOnFocus={true}
               />
               <TouchableOpacity
                 onPress={() => setShowPassword(!showPassword)}
@@ -165,8 +169,8 @@ export default function LoginScreen({ navigation }) {
             <TouchableOpacity onPress={() => navigation.navigate("Register")}>
               <Text style={styles.registerLink}>Regístrate</Text>
             </TouchableOpacity>
+                      </View>
           </View>
-        </Animated.View>
 
         {/* Elementos decorativos */}
         <View style={styles.decorativeElements}>
@@ -190,7 +194,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     paddingHorizontal: 30,
-    zIndex: 2,
+    zIndex: 10,
   },
   logoContainer: {
     alignItems: "center",
@@ -314,6 +318,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: "100%",
+    zIndex: 1,
+    pointerEvents: "none",
   },
   circle1: {
     position: "absolute",

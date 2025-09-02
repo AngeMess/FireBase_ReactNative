@@ -104,23 +104,23 @@ export default function RegisterScreen({ navigation }) {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          <Animated.View
-            style={[
-              styles.content,
-              {
-                opacity: fadeAnim,
-                transform: [{ translateY: slideAnim }],
-              },
-            ]}
-          >
+          <View style={styles.content}>
             {/* Logo/Icono */}
-            <View style={styles.logoContainer}>
+            <Animated.View 
+              style={[
+                styles.logoContainer,
+                {
+                  opacity: fadeAnim,
+                  transform: [{ translateY: slideAnim }],
+                },
+              ]}
+            >
               <View style={styles.logoCircle}>
                 <Ionicons name="person-add" size={60} color="#fff" />
               </View>
               <Text style={styles.appName}>Únete a nosotros</Text>
               <Text style={styles.welcomeText}>Crea tu cuenta nueva</Text>
-            </View>
+            </Animated.View>
 
             {/* Formulario */}
             <View style={styles.formContainer}>
@@ -133,6 +133,8 @@ export default function RegisterScreen({ navigation }) {
                   onChangeText={setName}
                   style={styles.input}
                   autoCapitalize="words"
+                  editable={true}
+                  selectTextOnFocus={true}
                 />
               </View>
 
@@ -146,6 +148,8 @@ export default function RegisterScreen({ navigation }) {
                   style={styles.input}
                   keyboardType="email-address"
                   autoCapitalize="none"
+                  editable={true}
+                  selectTextOnFocus={true}
                 />
               </View>
 
@@ -158,6 +162,8 @@ export default function RegisterScreen({ navigation }) {
                   onChangeText={setPassword}
                   secureTextEntry={!showPassword}
                   style={styles.input}
+                  editable={true}
+                  selectTextOnFocus={true}
                 />
                 <TouchableOpacity
                   onPress={() => setShowPassword(!showPassword)}
@@ -180,6 +186,8 @@ export default function RegisterScreen({ navigation }) {
                   onChangeText={setAge}
                   style={styles.input}
                   keyboardType="numeric"
+                  editable={true}
+                  selectTextOnFocus={true}
                 />
               </View>
 
@@ -192,6 +200,8 @@ export default function RegisterScreen({ navigation }) {
                   onChangeText={setSpecialty}
                   style={styles.input}
                   autoCapitalize="words"
+                  editable={true}
+                  selectTextOnFocus={true}
                 />
               </View>
 
@@ -230,7 +240,7 @@ export default function RegisterScreen({ navigation }) {
                 <Text style={styles.loginLink}>Inicia sesión</Text>
               </TouchableOpacity>
             </View>
-          </Animated.View>
+          </View>
         </ScrollView>
 
         {/* Elementos decorativos */}
@@ -258,7 +268,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 30,
-    zIndex: 2,
+    zIndex: 10,
   },
   logoContainer: {
     alignItems: "center",
@@ -382,6 +392,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: "100%",
+    zIndex: 1,
+    pointerEvents: "none",
   },
   circle1: {
     position: "absolute",
